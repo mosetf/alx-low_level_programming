@@ -23,6 +23,7 @@ int main(void)
 				if (hundred != '7' || ten != '8' || one != '9')
 				{
 					putchar(',');
+					putchar(' ');
 				}
 			}
 		}
