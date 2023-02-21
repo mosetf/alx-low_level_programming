@@ -6,7 +6,7 @@
  * Return: Absolute value of number or zero
  */
 
-int _abs(int c)
+int _abs(int c6-abs.c)
 {
 
 	if (c < 0)
