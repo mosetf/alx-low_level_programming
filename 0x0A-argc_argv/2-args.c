@@ -9,6 +9,7 @@
  */
 
 int main(int argc, char *argv[])
+<<<<<<< HEAD
 {
 	int i;
 
@@ -18,4 +19,25 @@ int main(int argc, char *argv[])
 	}
 
 	return (0);
+=======
+
+{
+
+	int i;
+
+
+
+	for (i = 0; i < argc; i++)
+
+	{
+
+		printf("%s\n", argv[i]);
+
+	}
+
+
+
+	return (0);
+
+>>>>>>> a00d3218778e1628c5a23e4be34e47586637acbc
 }
