@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stddef.h>
+
 
 /**
  * binary_to_uint - converts base 2 to an unsigned int
