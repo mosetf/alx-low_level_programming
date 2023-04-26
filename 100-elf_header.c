@@ -1,30 +1,10 @@
-
-Nestrelda-2023
-/
-alx-low_level_programming
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Security
-Insights
-Beta Try the new code view
-alx-low_level_programming/0x15-file_io/2-append_text_to_file.c
-@Nestrelda-2023
-Nestrelda-2023 Create 2-append_text_to_file.c
- 1 contributor
-33 lines (26 sloc)  695 Bytes
 #include "main.h"
 
 /**
- * append_text_to_file - Appends text at the end of a file.
- * @filename: A pointer to the name of the file.
- * @text_content: The string to add to the end of the file.
- * Return: If the function fails or filename is NULL - -1.
- * If the file does not exist the user lacks write permissions - -1.
- * Otherwise - 1.
+ * append_text_to_file - Appends text 
+ * @filename: A pointer 
+ * @text_content: The string to be added at the end of the file
+ * Return: If the function fails or filename is NULL - -1 rlse - - 1
  */
 int append_text_to_file(const char *filename, char *text_content)
 {
