@@ -7,18 +7,19 @@
  */
 unsigned int binary_to_unit(const char *b)
 {
-	if (!b || !*b)
-		return (0);
+    int index;
+    unsigned int result = 0;
 
-	unsigned int decimal = 0;
-	for (; *b; ++b)
-	{
-		if (*b != '0' && *b != '1')
-			return (0);
+    if (!b)
+        return (0);
 
-		decimal = (decimal << 1) | (*b - '0');
-	}
+    for (index = 0; b[index]; index++)
+    {
+        if (b[index] < '0' || b[index] > '1')
+            return (0);
+        result = 2 * result + (b[index] - '0');
+    }
 
-	return (decimal);
+    return (result);
 }
 
