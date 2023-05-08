@@ -11,10 +11,12 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 
 	FILE *file = fopen(filename, "r");
+
 	if (file == NULL)
 		return (0);
 
 	char *buffer = malloc(letters + 1);
+
 	if (buffer == NULL)
 	{
 		fclose(file);
@@ -22,6 +24,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	}
 
 	ssize_t read_count = fread(buffer, sizeof(char), letters, file);
+
 	if (read_count == 0)
 	{
 		fclose(file);
@@ -32,6 +35,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	buffer[read_count] = '\0';
 
 	ssize_t write_count = write(STDOUT_FILENO, buffer, read_count);
+
 	if (write_count != read_count)
 	{
 		fclose(file);
