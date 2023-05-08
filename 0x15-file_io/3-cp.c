@@ -9,56 +9,44 @@
  */
 int main(int argc, char *argv[])
 {
-	int fd_from, fd_to;
-	ssize_t nread, nwritten;
-	char buf[BUFSIZE];
+	int fd_r, fd_w, r, a, b;
+	char buf[BUFSIZ];
 
 	if (argc != 3)
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
-		return (EXIT_FAILURE);
+		exit(97);
 	}
-
-	fd_from = open(argv[1], O_RDONLY);
-	if (fd_from == -1)
+	fd_r = open(argv[1], O_RDONLY);
+	if (fd_r < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-		return (EXIT_FAILURE);
+		exit(98);
 	}
-
-	fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
-	if (fd_to == -1)
+	fd_w = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	while ((r = read(fd_r, buf, BUFSIZ)) > 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-		close(fd_from);
-		return (EXIT_FAILURE);
-	}
-
-	while ((nread = read(fd_from, buf, BUFSIZE)) > 0)
-	{
-		nwritten = write(fd_to, buf, nread);
-		if (nwritten == -1 || nwritten != nread)
+		if (fd_w < 0 || write(fd_w, buf, r) != r)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-			close(fd_from);
-			close(fd_to);
-			return (EXIT_FAILURE);
+			close(fd_r);
+			exit(99);
 		}
 	}
-
-	if (nread == -1)
+	if (r < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-		close(fd_from);
-		close(fd_to);
-		return (EXIT_FAILURE);
+		exit(98);
 	}
-
-	if (close(fd_from) == -1 || close(fd_to) == -1)
+	a = close(fd_r);
+	b = close(fd_w);
+	if (a < 0 || b < 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close file descriptors\n");
-		return (EXIT_FAILURE);
+		if (a < 0)
+			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_r);
+		if (b < 0)
+			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_w);
+		exit(100);
 	}
-
-	return (EXIT_SUCCESS);
+	return (0);
 }
