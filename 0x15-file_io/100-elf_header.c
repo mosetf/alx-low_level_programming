@@ -168,7 +168,7 @@ void printf_abi(unsigned char *e_ident)
 
 /**
  * printf_type - outputs the type of an ELF header
- * @e_type: elf 
+ * @e_type: elf
  * @e_ident: pointer to array of ELF class
  */
 void printf_type(unsigned int e_type, unsigned char *e_ident)
@@ -242,7 +242,7 @@ void end_elf(int elf)
 /**
  * main - prints data contained in the ELF header file
  * @argc: number of arguments in the program
- * @argv: array of pointers 
+ * @argv: array of pointers
  * Return: 0 on success
  */
 int main(int __attribute__((__unused__)) argc, char *argv[])
