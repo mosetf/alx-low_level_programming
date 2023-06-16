@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * print_dlistint - prints a doubly linked list
+ * print_dlistint - prints a doubly list
  * @h: pointer to the list
- * Return: number of nodes in the list
+ * Return: number of nodes in the linked list
  */
 size_t print_dlistint(const dlistint_t *h)
 {
